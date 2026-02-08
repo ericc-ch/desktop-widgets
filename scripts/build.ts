@@ -9,7 +9,7 @@ const rootDir = path.join(import.meta.dir, "..")
 const distDir = path.join(rootDir, "./dist/")
 
 const entries = [
-  { name: "dashboard", entry: "./src/dashboard.tsx" },
+  // { name: "dashboard", entry: "./src/dashboard.tsx" },
   { name: "bar", entry: "./src/bar.tsx" },
   { name: "launcher", entry: "./src/launcher.tsx" },
 ]
@@ -21,6 +21,8 @@ await Promise.all(
     await Bun.build({
       entrypoints: [path.join(rootDir, entry)],
       plugins: [solidPlugin],
+      bytecode: true,
+      format: "esm",
       minify: true,
       compile: {
         autoloadBunfig: false,
